@@ -1,0 +1,1199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Radhika Gautam — Digital Health Professional</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #0f1f3d;
+    --navy-mid: #1a3260;
+    --teal: #1a8f7a;
+    --teal-light: #22b89e;
+    --teal-pale: #e8f7f4;
+    --white: #ffffff;
+    --off-white: #f7f6f2;
+    --gray-100: #f0eeea;
+    --gray-200: #dedad3;
+    --gray-400: #9e9a92;
+    --gray-600: #5c5852;
+    --gray-800: #2e2c29;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+    --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--white);
+    color: var(--gray-800);
+    line-height: 1.7;
+    font-size: 16px;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--gray-200);
+    padding: 0 clamp(1.5rem, 5vw, 4rem);
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: box-shadow var(--transition);
+  }
+  nav.scrolled { box-shadow: 0 2px 24px rgba(15,31,61,0.08); }
+
+  .nav-logo {
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: var(--navy);
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--teal); }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 0.825rem;
+    font-weight: 400;
+    color: var(--gray-600);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    position: relative;
+    padding-bottom: 2px;
+    transition: color var(--transition);
+  }
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 0; height: 1px;
+    background: var(--teal);
+    transition: width var(--transition);
+  }
+  .nav-links a:hover, .nav-links a.active { color: var(--navy); }
+  .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+
+  .nav-hamburger { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
+  .nav-hamburger span { display: block; width: 22px; height: 1.5px; background: var(--navy); margin: 5px 0; transition: var(--transition); }
+
+  /* ── PAGES ── */
+  .page { display: none; min-height: 100vh; padding-top: 64px; }
+  .page.active { display: block; }
+
+  /* ── PAGE: HOME ── */
+  .hero {
+    min-height: calc(100vh - 64px);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: clamp(3rem, 8vw, 6rem) clamp(1.5rem, 5vw, 4rem);
+    gap: 4rem;
+    background: var(--white);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -120px; right: -120px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(26,143,122,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: 10%;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(15,31,61,0.04) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-text { position: relative; z-index: 1; }
+  .hero-eyebrow {
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--teal);
+    font-weight: 500;
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 32px; height: 1px;
+    background: var(--teal);
+  }
+  .hero-name {
+    font-family: var(--serif);
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    font-weight: 300;
+    color: var(--navy);
+    line-height: 1.05;
+    margin-bottom: 1rem;
+    letter-spacing: -0.01em;
+  }
+  .hero-name em { font-style: italic; color: var(--teal); }
+  .hero-tagline {
+    font-family: var(--serif);
+    font-size: clamp(1rem, 2vw, 1.35rem);
+    color: var(--gray-600);
+    font-weight: 300;
+    font-style: italic;
+    margin-bottom: 1.75rem;
+    letter-spacing: 0.02em;
+  }
+  .hero-bio {
+    font-size: 0.95rem;
+    color: var(--gray-600);
+    max-width: 480px;
+    margin-bottom: 2.5rem;
+    line-height: 1.8;
+  }
+  .hero-ctas {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    padding: 0.75rem 2rem;
+    background: var(--navy);
+    color: var(--white);
+    text-decoration: none;
+    font-size: 0.825rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: background var(--transition), transform var(--transition);
+    cursor: pointer;
+    border: none;
+  }
+  .btn-primary:hover { background: var(--teal); transform: translateY(-1px); }
+
+  .btn-outline {
+    display: inline-block;
+    padding: 0.75rem 2rem;
+    border: 1px solid var(--navy);
+    color: var(--navy);
+    text-decoration: none;
+    font-size: 0.825rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: all var(--transition);
+    background: transparent;
+    cursor: pointer;
+  }
+  .btn-outline:hover { background: var(--navy); color: var(--white); transform: translateY(-1px); }
+
+  .hero-visual {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .hero-card {
+    background: var(--navy);
+    color: var(--white);
+    padding: 3rem 2.5rem;
+    width: 100%;
+    max-width: 380px;
+    position: relative;
+  }
+  .hero-card::before {
+    content: '';
+    position: absolute;
+    top: -12px; left: -12px;
+    right: 12px; bottom: 12px;
+    border: 1px solid var(--teal);
+    pointer-events: none;
+    z-index: -1;
+  }
+  .hero-card-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--teal-light);
+    margin-bottom: 1.5rem;
+  }
+  .hero-card-title {
+    font-family: var(--serif);
+    font-size: 1.65rem;
+    font-weight: 300;
+    line-height: 1.3;
+    margin-bottom: 1.5rem;
+    font-style: italic;
+  }
+  .hero-card-divider { height: 1px; background: rgba(255,255,255,0.15); margin-bottom: 1.5rem; }
+  .hero-card-stat { margin-bottom: 1rem; }
+  .hero-card-stat-label { font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 0.2rem; }
+  .hero-card-stat-value { font-family: var(--serif); font-size: 1.1rem; font-weight: 400; color: var(--white); }
+  .hero-card-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1.5rem; }
+  .hero-card-tag {
+    font-size: 0.7rem;
+    padding: 0.3rem 0.8rem;
+    border: 1px solid rgba(26,184,158,0.4);
+    color: var(--teal-light);
+    letter-spacing: 0.05em;
+  }
+
+  /* ── FEATURES STRIP ── */
+  .features-strip {
+    background: var(--off-white);
+    padding: 4rem clamp(1.5rem, 5vw, 4rem);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    border-top: 1px solid var(--gray-200);
+  }
+  .feature-item { padding: 1.5rem; }
+  .feature-number {
+    font-family: var(--serif);
+    font-size: 3rem;
+    font-weight: 300;
+    color: var(--teal);
+    line-height: 1;
+    margin-bottom: 0.75rem;
+    opacity: 0.5;
+  }
+  .feature-title { font-size: 0.95rem; font-weight: 500; color: var(--navy); margin-bottom: 0.5rem; }
+  .feature-desc { font-size: 0.85rem; color: var(--gray-600); line-height: 1.7; }
+
+  /* ── SECTION COMMON ── */
+  .section { padding: clamp(4rem, 8vw, 7rem) clamp(1.5rem, 5vw, 4rem); }
+  .section-alt { background: var(--off-white); }
+  .section-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--teal);
+    font-weight: 500;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .section-label::before {
+    content: '';
+    display: inline-block;
+    width: 24px; height: 1px;
+    background: var(--teal);
+  }
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 4vw, 3.25rem);
+    font-weight: 300;
+    color: var(--navy);
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+  }
+  .section-title em { font-style: italic; }
+  .section-body { font-size: 0.95rem; color: var(--gray-600); line-height: 1.9; max-width: 680px; }
+
+  /* ── PAGE: ABOUT ── */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .about-aside { position: sticky; top: 5rem; }
+  .about-photo-placeholder {
+    aspect-ratio: 4/5;
+    background: var(--navy);
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 2rem;
+  }
+  .about-photo-placeholder::before {
+    content: '';
+    position: absolute;
+    top: -20px; right: -20px;
+    width: 80%; height: 80%;
+    border: 1px solid rgba(26,184,158,0.3);
+    pointer-events: none;
+  }
+  .about-photo-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .about-photo-initials {
+    font-family: var(--serif);
+    font-size: 5rem;
+    font-weight: 300;
+    color: rgba(255,255,255,0.15);
+    line-height: 1;
+  }
+  .about-photo-note { font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.3); }
+  .about-quick-facts { display: flex; flex-direction: column; gap: 0.75rem; }
+  .about-fact {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--gray-200);
+    font-size: 0.85rem;
+  }
+  .about-fact-key { color: var(--gray-400); font-size: 0.75rem; letter-spacing: 0.05em; text-transform: uppercase; }
+  .about-fact-val { color: var(--navy); font-weight: 500; text-align: right; }
+
+  .about-content > * + * { margin-top: 3rem; }
+  .about-block-title {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--navy);
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--gray-200);
+  }
+  .about-text { font-size: 0.95rem; color: var(--gray-600); line-height: 1.9; }
+
+  .style-badges { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1rem; }
+  .style-badge {
+    padding: 0.5rem 1.25rem;
+    border: 1px solid var(--navy);
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+    color: var(--navy);
+    font-weight: 500;
+  }
+
+  .interests-list { display: flex; flex-direction: column; gap: 0.6rem; margin-top: 1rem; }
+  .interest-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.9rem;
+    color: var(--gray-600);
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--gray-100);
+  }
+  .interest-dot { width: 6px; height: 6px; background: var(--teal); border-radius: 50%; flex-shrink: 0; }
+
+  .video-placeholder {
+    aspect-ratio: 16/9;
+    background: var(--gray-100);
+    border: 1px solid var(--gray-200);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-top: 1rem;
+    cursor: pointer;
+    transition: background var(--transition);
+  }
+  .video-placeholder:hover { background: var(--gray-200); }
+  .video-play {
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    background: var(--navy);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .video-play::after {
+    content: '';
+    border: 8px solid transparent;
+    border-left: 14px solid white;
+    margin-left: 4px;
+  }
+  .video-placeholder-text { font-size: 0.8rem; color: var(--gray-400); letter-spacing: 0.05em; }
+
+  /* ── PAGE: BLOG ── */
+  .blog-header {
+    background: var(--navy);
+    padding: clamp(4rem, 8vw, 7rem) clamp(1.5rem, 5vw, 4rem);
+    position: relative;
+    overflow: hidden;
+  }
+  .blog-header::before {
+    content: 'Blog';
+    font-family: var(--serif);
+    font-size: 18vw;
+    font-weight: 300;
+    color: rgba(255,255,255,0.03);
+    position: absolute;
+    right: -2vw;
+    top: 50%;
+    transform: translateY(-50%);
+    white-space: nowrap;
+    pointer-events: none;
+  }
+  .blog-header .section-label { color: var(--teal-light); }
+  .blog-header .section-label::before { background: var(--teal-light); }
+  .blog-header .section-title { color: var(--white); }
+  .blog-header p { color: rgba(255,255,255,0.6); font-size: 0.95rem; max-width: 520px; margin-top: 1rem; }
+
+  .blog-grid {
+    padding: clamp(3rem, 6vw, 5rem) clamp(1.5rem, 5vw, 4rem);
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .blog-card {
+    border: 1px solid var(--gray-200);
+    background: var(--white);
+    transition: transform var(--transition), box-shadow var(--transition);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+  }
+  .blog-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(15,31,61,0.1); }
+
+  .blog-card-image {
+    aspect-ratio: 16/9;
+    background: linear-gradient(135deg, var(--navy) 0%, var(--teal) 100%);
+    display: flex;
+    align-items: flex-end;
+    padding: 1.25rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .blog-card-image::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+  .blog-card-category {
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--teal-light);
+    background: rgba(0,0,0,0.4);
+    padding: 0.3rem 0.7rem;
+    backdrop-filter: blur(4px);
+  }
+  .blog-card-body { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; }
+  .blog-card-meta { font-size: 0.75rem; color: var(--gray-400); margin-bottom: 0.75rem; }
+  .blog-card-title {
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: var(--navy);
+    line-height: 1.3;
+    margin-bottom: 0.75rem;
+    flex: 1;
+  }
+  .blog-card-excerpt { font-size: 0.85rem; color: var(--gray-600); line-height: 1.7; margin-bottom: 1.25rem; }
+  .blog-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1rem;
+    border-top: 1px solid var(--gray-100);
+  }
+  .blog-card-author { font-size: 0.8rem; color: var(--gray-600); }
+  .blog-read-more {
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--teal);
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    text-decoration: none;
+    transition: gap var(--transition);
+  }
+  .blog-read-more:hover { gap: 0.7rem; }
+  .blog-read-more::after { content: '→'; }
+
+  /* Blog post full */
+  .blog-post-view {
+    display: none;
+    padding: clamp(3rem, 6vw, 5rem) clamp(1.5rem, 5vw, 4rem);
+    max-width: 760px;
+    margin: 0 auto;
+  }
+  .blog-post-view.active { display: block; }
+  .blog-post-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--teal);
+    cursor: pointer;
+    margin-bottom: 2.5rem;
+    transition: gap var(--transition);
+    background: none;
+    border: none;
+    padding: 0;
+  }
+  .blog-post-back::before { content: '←'; }
+  .blog-post-back:hover { gap: 0.75rem; }
+  .blog-post-header { margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 1px solid var(--gray-200); }
+  .blog-post-cat { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--teal); margin-bottom: 1rem; }
+  .blog-post-title {
+    font-family: var(--serif);
+    font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+    font-weight: 300;
+    color: var(--navy);
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+  .blog-post-meta { font-size: 0.8rem; color: var(--gray-400); }
+  .blog-post-body h2 {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--navy);
+    margin: 2.5rem 0 1rem;
+  }
+  .blog-post-body p {
+    font-size: 0.975rem;
+    color: var(--gray-600);
+    line-height: 1.95;
+    margin-bottom: 1.5rem;
+  }
+  .blog-post-body p.byline {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--gray-400);
+    border-top: 1px solid var(--gray-200);
+    padding-top: 1.5rem;
+    margin-top: 2.5rem;
+  }
+
+  /* ── PAGE: CONTACT ── */
+  .contact-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 5rem;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: clamp(4rem, 8vw, 7rem) clamp(1.5rem, 5vw, 4rem);
+  }
+  .contact-info > * + * { margin-top: 2rem; }
+  .contact-detail {
+    padding: 1.25rem 0;
+    border-bottom: 1px solid var(--gray-200);
+  }
+  .contact-detail-label { font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-400); margin-bottom: 0.4rem; }
+  .contact-detail-value { font-size: 0.9rem; color: var(--navy); font-weight: 500; }
+
+  .contact-form > * + * { margin-top: 1.25rem; }
+  .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+  .form-label { font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray-600); font-weight: 500; }
+  .form-input {
+    padding: 0.875rem 1rem;
+    border: 1px solid var(--gray-200);
+    background: var(--white);
+    font-family: var(--sans);
+    font-size: 0.9rem;
+    color: var(--navy);
+    outline: none;
+    transition: border-color var(--transition);
+    width: 100%;
+  }
+  .form-input:focus { border-color: var(--teal); }
+  textarea.form-input { resize: vertical; min-height: 140px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .form-submit { margin-top: 1.75rem; }
+  .form-success {
+    display: none;
+    padding: 1rem 1.25rem;
+    background: var(--teal-pale);
+    border-left: 3px solid var(--teal);
+    font-size: 0.875rem;
+    color: var(--teal);
+  }
+
+  /* ── PAGE: LINKEDIN ── */
+  .linkedin-layout {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: clamp(4rem, 8vw, 7rem) clamp(1.5rem, 5vw, 4rem);
+  }
+  .linkedin-card {
+    border: 1px solid var(--gray-200);
+    overflow: hidden;
+    margin-top: 3rem;
+  }
+  .linkedin-card-header {
+    background: var(--navy);
+    height: 120px;
+    position: relative;
+  }
+  .linkedin-card-header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--navy) 60%, var(--teal) 100%);
+    opacity: 0.6;
+  }
+  .linkedin-card-avatar {
+    position: absolute;
+    bottom: -36px;
+    left: 2rem;
+    width: 72px; height: 72px;
+    border-radius: 50%;
+    background: var(--teal);
+    border: 3px solid var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    color: var(--white);
+    font-weight: 300;
+  }
+  .linkedin-card-body { padding: 3rem 2rem 2rem; }
+  .linkedin-card-name {
+    font-family: var(--serif);
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: var(--navy);
+    margin-bottom: 0.25rem;
+  }
+  .linkedin-card-headline { font-size: 0.9rem; color: var(--gray-600); margin-bottom: 0.5rem; }
+  .linkedin-card-location { font-size: 0.8rem; color: var(--gray-400); margin-bottom: 2rem; }
+  .linkedin-section { margin-bottom: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--gray-100); }
+  .linkedin-section-title { font-size: 0.8rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; color: var(--gray-400); margin-bottom: 1rem; }
+  .linkedin-exp { margin-bottom: 1rem; }
+  .linkedin-exp-title { font-size: 0.9rem; font-weight: 500; color: var(--navy); }
+  .linkedin-exp-org { font-size: 0.85rem; color: var(--gray-600); }
+  .linkedin-exp-date { font-size: 0.8rem; color: var(--gray-400); margin-top: 0.2rem; }
+  .linkedin-skills { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .linkedin-skill {
+    padding: 0.3rem 0.9rem;
+    border: 1px solid var(--gray-200);
+    font-size: 0.8rem;
+    color: var(--gray-600);
+  }
+  .linkedin-cta {
+    margin-top: 2rem;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+  .linkedin-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.75rem;
+    background: #0a66c2;
+    color: white;
+    text-decoration: none;
+    font-size: 0.825rem;
+    font-weight: 500;
+    transition: background var(--transition);
+    border: none;
+    cursor: pointer;
+  }
+  .linkedin-btn:hover { background: #004182; }
+  .linkedin-btn svg { width: 16px; height: 16px; fill: currentColor; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--navy);
+    color: rgba(255,255,255,0.5);
+    padding: 3rem clamp(1.5rem, 5vw, 4rem);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  footer .footer-logo {
+    font-family: var(--serif);
+    font-size: 1rem;
+    color: rgba(255,255,255,0.8);
+    font-weight: 300;
+  }
+  footer .footer-logo span { color: var(--teal-light); }
+  footer p { font-size: 0.8rem; }
+  footer .footer-links { display: flex; gap: 1.5rem; }
+  footer .footer-links a { font-size: 0.8rem; color: rgba(255,255,255,0.4); text-decoration: none; transition: color var(--transition); }
+  footer .footer-links a:hover { color: var(--teal-light); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .animate-up { animation: fadeUp 0.7s cubic-bezier(0.4,0,0.2,1) both; }
+  .animate-up:nth-child(1) { animation-delay: 0.1s; }
+  .animate-up:nth-child(2) { animation-delay: 0.2s; }
+  .animate-up:nth-child(3) { animation-delay: 0.3s; }
+  .animate-up:nth-child(4) { animation-delay: 0.4s; }
+  .animate-up:nth-child(5) { animation-delay: 0.5s; }
+
+  /* ── MOBILE ── */
+  @media (max-width: 768px) {
+    .hero { grid-template-columns: 1fr; gap: 2.5rem; }
+    .hero-visual { order: -1; }
+    .hero-card { max-width: 100%; }
+    .features-strip { grid-template-columns: 1fr; }
+    .about-grid { grid-template-columns: 1fr; }
+    .about-aside { position: static; }
+    .contact-layout { grid-template-columns: 1fr; gap: 3rem; }
+    .form-row { grid-template-columns: 1fr; }
+    .nav-links { display: none; position: fixed; top: 64px; left: 0; right: 0; background: white; flex-direction: column; padding: 1.5rem; border-bottom: 1px solid var(--gray-200); gap: 1rem; z-index: 99; }
+    .nav-links.open { display: flex; }
+    .nav-hamburger { display: block; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── NAVIGATION ── -->
+<nav id="mainNav">
+  <a class="nav-logo" onclick="showPage('home')">Radhika <span>Gautam</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#" onclick="showPage('home')" data-page="home">Home</a></li>
+    <li><a href="#" onclick="showPage('about')" data-page="about">About Me</a></li>
+    <li><a href="#" onclick="showPage('blog')" data-page="blog">Blog</a></li>
+    <li><a href="#" onclick="showPage('contact')" data-page="contact">Contact</a></li>
+    <li><a href="#" onclick="showPage('linkedin')" data-page="linkedin">LinkedIn</a></li>
+  </ul>
+  <button class="nav-hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ════════════════════════════════════
+     PAGE: HOME
+════════════════════════════════════ -->
+<div id="page-home" class="page active">
+  <section class="hero">
+    <div class="hero-text">
+      <div class="hero-eyebrow animate-up">Digital Health Professional</div>
+      <h1 class="hero-name animate-up">Radhika<br><em>Gautam</em></h1>
+      <p class="hero-tagline animate-up">Health. Technology. Impact.</p>
+      <p class="hero-bio animate-up">
+        Pharmacist turned digital health professional. Bridging clinical expertise with technology to build patient-centred healthcare solutions that are equitable, accessible, and human.
+      </p>
+      <div class="hero-ctas animate-up">
+        <button class="btn-primary" onclick="showPage('about')">About Me</button>
+        <button class="btn-outline" onclick="showPage('blog')">Read My Blog</button>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-card animate-up">
+        <p class="hero-card-label">Professional Profile</p>
+        <p class="hero-card-title">"Bridging pharmacy practice & digital health innovation"</p>
+        <div class="hero-card-divider"></div>
+        <div class="hero-card-stat">
+          <p class="hero-card-stat-label">Current Study</p>
+          <p class="hero-card-stat-value">Master of Digital Health, La Trobe University</p>
+        </div>
+        <div class="hero-card-stat">
+          <p class="hero-card-stat-label">Background</p>
+          <p class="hero-card-stat-value">Bachelor of Pharmacy, Nepal</p>
+        </div>
+        <div class="hero-card-stat">
+          <p class="hero-card-stat-label">Communication Style</p>
+          <p class="hero-card-stat-value">Driver & Analytical</p>
+        </div>
+        <div class="hero-card-tags">
+          <span class="hero-card-tag">Health Informatics</span>
+          <span class="hero-card-tag">Telehealth</span>
+          <span class="hero-card-tag">Patient Safety</span>
+          <span class="hero-card-tag">Digital Health</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="features-strip">
+    <div class="feature-item">
+      <div class="feature-number">01</div>
+      <h3 class="feature-title">Healthcare Expertise</h3>
+      <p class="feature-desc">Grounded in pharmacy practice and patient communication across community healthcare settings in Nepal.</p>
+    </div>
+    <div class="feature-item">
+      <div class="feature-number">02</div>
+      <h3 class="feature-title">Digital Innovation</h3>
+      <p class="feature-desc">Applying health informatics, AI, and digital therapeutics to transform how care is delivered and experienced.</p>
+    </div>
+    <div class="feature-item">
+      <div class="feature-number">03</div>
+      <h3 class="feature-title">Patient-Centred</h3>
+      <p class="feature-desc">Every solution evaluated not just for efficiency, but for equity, accessibility, and genuine human impact.</p>
+    </div>
+  </section>
+</div>
+
+<!-- ════════════════════════════════════
+     PAGE: ABOUT ME
+════════════════════════════════════ -->
+<div id="page-about" class="page">
+  <div class="section">
+    <div class="about-grid">
+      <div class="about-aside">
+        <div class="about-photo-placeholder">
+          <div class="about-photo-inner">
+            <div class="about-photo-initials">RG</div>
+            <p class="about-photo-note">Upload your photo</p>
+          </div>
+        </div>
+        <div class="about-quick-facts">
+          <div class="about-fact">
+            <span class="about-fact-key">Location</span>
+            <span class="about-fact-val">Melbourne, Australia</span>
+          </div>
+          <div class="about-fact">
+            <span class="about-fact-key">Origin</span>
+            <span class="about-fact-val">Kathmandu, Nepal</span>
+          </div>
+          <div class="about-fact">
+            <span class="about-fact-key">Degree</span>
+            <span class="about-fact-val">Master of Digital Health</span>
+          </div>
+          <div class="about-fact">
+            <span class="about-fact-key">University</span>
+            <span class="about-fact-val">La Trobe University</span>
+          </div>
+          <div class="about-fact">
+            <span class="about-fact-key">Background</span>
+            <span class="about-fact-val">B.Pharm + Community Pharmacy</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-content">
+        <div>
+          <div class="section-label">About Me</div>
+          <h2 class="section-title">Pharmacist.<br><em>Digital health innovator.</em></h2>
+        </div>
+
+        <div>
+          <h3 class="about-block-title">My Story</h3>
+          <p class="about-text">
+            I'm Radhika Gautam, originally from Nepal where I completed a Bachelor of Pharmacy and worked as a community pharmacist. In that role, I communicated with patients daily — translating complex medical information into clear, actionable guidance, and managing healthcare responsibilities across a busy community setting.
+          </p>
+          <p class="about-text" style="margin-top: 1rem;">
+            Seeing how technology could improve patient safety and healthcare communication drew me to digital health. I'm now pursuing a Master of Digital Health at La Trobe University in Melbourne, Australia, where I'm developing the knowledge and skills to bridge clinical expertise with digital innovation.
+          </p>
+        </div>
+
+        <div>
+          <h3 class="about-block-title">Communication Style</h3>
+          <p class="about-text">My primary communication styles are Driver and Analytical. The Driver style emphasises results-oriented leadership and efficiency, while the Analytical style ensures my approach is structured and logical. These traits stem from my pharmacy background — enabling clear patient communication and effective problem-solving in healthcare settings.</p>
+          <div class="style-badges">
+            <span class="style-badge">Driver</span>
+            <span class="style-badge">Analytical</span>
+            <span class="style-badge">Results-Oriented</span>
+            <span class="style-badge">Structured</span>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="about-block-title">Digital Health Interests</h3>
+          <div class="interests-list">
+            <div class="interest-item"><span class="interest-dot"></span>Health Informatics & Clinical Data Systems</div>
+            <div class="interest-item"><span class="interest-dot"></span>Telehealth & Remote Patient Monitoring</div>
+            <div class="interest-item"><span class="interest-dot"></span>Patient Safety & Digital Therapeutics</div>
+            <div class="interest-item"><span class="interest-dot"></span>AI in Healthcare & Clinical Decision Support</div>
+            <div class="interest-item"><span class="interest-dot"></span>Digital Health Equity & Accessibility</div>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="about-block-title">My Video Bio</h3>
+          <div class="video-placeholder" role="button" aria-label="Play video biography">
+            <div class="video-play" aria-hidden="true"></div>
+            <p class="video-placeholder-text">Upload your introductory video here</p>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="about-block-title">My Logo</h3>
+          <div style="border: 1px solid var(--gray-200); padding: 2.5rem; display: flex; align-items: center; justify-content: center; background: var(--off-white);">
+            <div style="text-align: center;">
+              <div style="font-family: var(--serif); font-size: 2.5rem; font-weight: 300; color: var(--navy); letter-spacing: 0.05em; margin-bottom: 0.25rem;">RG</div>
+              <div style="font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--teal); border-top: 1px solid var(--gray-200); padding-top: 0.5rem;">Digital Health</div>
+              <div style="font-size: 0.6rem; letter-spacing: 0.1em; color: var(--gray-400); margin-top: 0.5rem;">Health · Technology · Impact</div>
+            </div>
+          </div>
+          <p style="font-size: 0.78rem; color: var(--gray-400); margin-top: 0.5rem; text-align: center;">Upload your logo image to replace this placeholder</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════
+     PAGE: BLOG
+════════════════════════════════════ -->
+<div id="page-blog" class="page">
+  <div id="blog-list-view">
+    <div class="blog-header">
+      <div class="section-label">Writing</div>
+      <h2 class="section-title">Digital Health<br><em>Insights</em></h2>
+      <p>Perspectives on healthcare technology, patient safety, and digital innovation — from a pharmacist navigating the world of digital health.</p>
+    </div>
+    <div class="blog-grid">
+      <article class="blog-card" onclick="showBlogPost()">
+        <div class="blog-card-image">
+          <span class="blog-card-category">Digital Health</span>
+        </div>
+        <div class="blog-card-body">
+          <p class="blog-card-meta">May 2025 &nbsp;·&nbsp; 4 min read</p>
+          <h3 class="blog-card-title">The Future of Digital Health: Bridging the Gap Between Technology and Patient Care</h3>
+          <p class="blog-card-excerpt">As healthcare systems worldwide embrace digital transformation, the role of digital health professionals becomes increasingly vital. Here, I explore what that means from the perspective of a pharmacist entering the field.</p>
+          <div class="blog-card-footer">
+            <span class="blog-card-author">Radhika Gautam</span>
+            <span class="blog-read-more">Read</span>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+
+  <div id="blog-post-view" class="blog-post-view">
+    <button class="blog-post-back" onclick="showBlogList()">Back to Blog</button>
+    <div class="blog-post-header">
+      <p class="blog-post-cat">Digital Health · May 2025 · 4 min read</p>
+      <h1 class="blog-post-title">The Future of Digital Health: Bridging the Gap Between Technology and Patient Care</h1>
+      <p class="blog-post-meta">By Radhika Gautam — Master of Digital Health, La Trobe University</p>
+    </div>
+    <div class="blog-post-body">
+      <p>As healthcare systems worldwide embrace digital transformation, the role of digital health professionals becomes increasingly vital. Having transitioned from community pharmacy practice in Nepal to studying a Master of Digital Health at La Trobe University in Australia, I have witnessed first-hand how technology can both challenge and enrich the patient experience.</p>
+      <h2>Why Digital Health Matters Now More Than Ever</h2>
+      <p>The COVID-19 pandemic accelerated the adoption of telehealth, remote patient monitoring, and digital therapeutics at an unprecedented pace. What once seemed like futuristic concepts — AI-assisted diagnosis, wearable health devices, and electronic health records — are now embedded in everyday clinical practice. Yet, the rapid pace of adoption has also exposed significant gaps: in digital literacy, in equitable access, and in the human-centred design of health technologies.</p>
+      <h2>The Role of the Digital Health Professional</h2>
+      <p>Digital health professionals sit at a critical intersection — bridging clinical knowledge, technology implementation, and patient communication. In my experience as a pharmacist, the most effective healthcare interactions were never just about the medicine; they were about trust, clarity, and empathy. These same principles must guide digital health innovation. A telehealth platform that is technically brilliant but confusing for an elderly patient has failed in its primary mission.</p>
+      <h2>Key Areas Shaping the Future</h2>
+      <p>Several domains are defining the next decade of digital health. Health informatics is enabling smarter data-driven decisions at the population level. AI and machine learning are supporting earlier diagnosis and personalised treatment pathways. Patient engagement platforms are empowering individuals to take ownership of their health. And interoperability standards are slowly — but surely — breaking down the silos between hospitals, clinics, and community care.</p>
+      <h2>Looking Forward</h2>
+      <p>The future of digital health is not about replacing clinicians — it is about amplifying their ability to care. As professionals entering this field, our responsibility is to ensure that every technological solution we champion is evaluated not just for its efficiency, but for its equity, its accessibility, and its genuine impact on patient outcomes. The bridge between technology and patient care is built one thoughtful decision at a time.</p>
+      <p class="byline">— Radhika Gautam | Master of Digital Health, La Trobe University, Australia</p>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════
+     PAGE: CONTACT
+════════════════════════════════════ -->
+<div id="page-contact" class="page">
+  <div class="contact-layout">
+    <div class="contact-info">
+      <div>
+        <div class="section-label">Contact</div>
+        <h2 class="section-title">Let's<br><em>Connect</em></h2>
+        <p class="section-body">I'd love to connect with fellow digital health professionals, researchers, clinicians, and innovators working at the intersection of healthcare and technology.</p>
+      </div>
+      <div class="contact-detail">
+        <p class="contact-detail-label">Location</p>
+        <p class="contact-detail-value">Melbourne, Australia</p>
+      </div>
+      <div class="contact-detail">
+        <p class="contact-detail-label">Origin</p>
+        <p class="contact-detail-value">Kathmandu, Nepal</p>
+      </div>
+      <div class="contact-detail">
+        <p class="contact-detail-label">Email</p>
+        <p class="contact-detail-value">radhika.gautam@example.com</p>
+      </div>
+      <div class="contact-detail">
+        <p class="contact-detail-label">Connect</p>
+        <p class="contact-detail-value" style="cursor: pointer; color: var(--teal);" onclick="showPage('linkedin')">View LinkedIn Profile →</p>
+      </div>
+    </div>
+
+    <div>
+      <form class="contact-form" onsubmit="handleFormSubmit(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="fname">First Name</label>
+            <input class="form-input" type="text" id="fname" placeholder="Jane" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="lname">Last Name</label>
+            <input class="form-input" type="text" id="lname" placeholder="Smith" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="email">Email Address</label>
+          <input class="form-input" type="email" id="email" placeholder="jane@example.com" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="subject">Subject</label>
+          <input class="form-input" type="text" id="subject" placeholder="Research collaboration, speaking, or just hello" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="message">Message</label>
+          <textarea class="form-input" id="message" placeholder="Your message..." required></textarea>
+        </div>
+        <div class="form-submit">
+          <button type="submit" class="btn-primary" style="width: 100%;">Send Message</button>
+        </div>
+        <div class="form-success" id="formSuccess">
+          ✓ Thank you for your message. I'll be in touch soon.
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════
+     PAGE: LINKEDIN
+════════════════════════════════════ -->
+<div id="page-linkedin" class="page">
+  <div class="linkedin-layout">
+    <div class="section-label">Professional Profile</div>
+    <h2 class="section-title">Connect on<br><em>LinkedIn</em></h2>
+    <p class="section-body">View my full professional history, education, and skillset on LinkedIn. I'm always open to connecting with healthcare professionals, researchers, and digital health innovators.</p>
+
+    <div class="linkedin-card">
+      <div class="linkedin-card-header">
+        <div class="linkedin-card-avatar">RG</div>
+      </div>
+      <div class="linkedin-card-body">
+        <h3 class="linkedin-card-name">Radhika Gautam</h3>
+        <p class="linkedin-card-headline">Master of Digital Health Student at La Trobe University | Pharmacist | Digital Health Professional</p>
+        <p class="linkedin-card-location">Melbourne, Victoria, Australia</p>
+
+        <div class="linkedin-section">
+          <p class="linkedin-section-title">Education</p>
+          <div class="linkedin-exp">
+            <p class="linkedin-exp-title">Master of Digital Health</p>
+            <p class="linkedin-exp-org">La Trobe University · Melbourne, Australia</p>
+            <p class="linkedin-exp-date">2024 – Present</p>
+          </div>
+          <div class="linkedin-exp">
+            <p class="linkedin-exp-title">Bachelor of Pharmacy</p>
+            <p class="linkedin-exp-org">University, Nepal</p>
+            <p class="linkedin-exp-date">Graduated prior to 2024</p>
+          </div>
+        </div>
+
+        <div class="linkedin-section">
+          <p class="linkedin-section-title">Experience</p>
+          <div class="linkedin-exp">
+            <p class="linkedin-exp-title">Community Pharmacist</p>
+            <p class="linkedin-exp-org">Community Pharmacy · Kathmandu, Nepal</p>
+            <p class="linkedin-exp-date">Patient communication, medication management, healthcare advisory</p>
+          </div>
+        </div>
+
+        <div class="linkedin-section">
+          <p class="linkedin-section-title">Skills</p>
+          <div class="linkedin-skills">
+            <span class="linkedin-skill">Health Informatics</span>
+            <span class="linkedin-skill">Digital Health</span>
+            <span class="linkedin-skill">Patient Communication</span>
+            <span class="linkedin-skill">Telehealth</span>
+            <span class="linkedin-skill">Pharmacy Practice</span>
+            <span class="linkedin-skill">Patient Safety</span>
+            <span class="linkedin-skill">Healthcare Technology</span>
+            <span class="linkedin-skill">Clinical Communication</span>
+          </div>
+        </div>
+
+        <div class="linkedin-cta">
+          <a href="https://www.linkedin.com/in/radhika-gautam" target="_blank" class="linkedin-btn">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            View Full Profile on LinkedIn
+          </a>
+        </div>
+        <p style="font-size: 0.78rem; color: var(--gray-400); margin-top: 0.75rem;">Update the LinkedIn URL above with your actual profile link before publishing.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-logo">Radhika <span>Gautam</span></div>
+  <p>© 2025 Radhika Gautam · Digital Health Professional</p>
+  <nav class="footer-links" aria-label="Footer navigation">
+    <a href="#" onclick="showPage('home')">Home</a>
+    <a href="#" onclick="showPage('about')">About</a>
+    <a href="#" onclick="showPage('blog')">Blog</a>
+    <a href="#" onclick="showPage('contact')">Contact</a>
+    <a href="#" onclick="showPage('linkedin')">LinkedIn</a>
+  </nav>
+</footer>
+
+<script>
+  const pages = ['home', 'about', 'blog', 'contact', 'linkedin'];
+
+  function showPage(name) {
+    pages.forEach(p => {
+      document.getElementById('page-' + p).classList.toggle('active', p === name);
+    });
+    document.querySelectorAll('.nav-links a').forEach(a => {
+      a.classList.toggle('active', a.dataset.page === name);
+    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    closeMenu();
+    if (name === 'blog') showBlogList();
+  }
+
+  function showBlogPost() {
+    document.getElementById('blog-list-view').style.display = 'none';
+    document.getElementById('blog-post-view').classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function showBlogList() {
+    document.getElementById('blog-list-view').style.display = 'block';
+    document.getElementById('blog-post-view').classList.remove('active');
+  }
+
+  function toggleMenu() {
+    document.getElementById('navLinks').classList.toggle('open');
+  }
+
+  function closeMenu() {
+    document.getElementById('navLinks').classList.remove('open');
+  }
+
+  function handleFormSubmit(e) {
+    e.preventDefault();
+    document.getElementById('formSuccess').style.display = 'block';
+    e.target.reset();
+    setTimeout(() => {
+      document.getElementById('formSuccess').style.display = 'none';
+    }, 5000);
+  }
+
+  window.addEventListener('scroll', () => {
+    document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 10);
+  });
+
+  // Set home as active on load
+  document.querySelector('[data-page="home"]').classList.add('active');
+</script>
+</body>
+</html>
